@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Download verified installer package
         env:
-          TRANSFER_URL: "https://sdmntprcentralindia.oaiusercontent.com/files/00000000-450c-8208-bab3-a00720933818/raw?se=2026-10-01T07%3A14%3A49Z&sp=r&sv=2026-02-06&sr=b&scid=327255a1-95fd-47d7-ab34-a7538f1026bc&skoid=f2622f62-3126-45cd-85e0-0bc840c3afdc&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T06%3A12%3A08Z&ske=2026-10-02T06%3A12%3A08Z&sks=b&skv=2026-02-06&sig=X2ZnZ90guR2p/juXnicK1j0RnluWE5L8uanrLyoDYLs%3D"
+          TRANSFER_URL: "https://sdmntprcentralindia.oaiusercontent.com/files/00000000-b5f0-8208-ad9e-7d07702a1714/raw?se=2026-10-01T07%3A16%3A48Z&sp=r&sv=2026-02-06&sr=b&scid=327255a1-95fd-47d7-ab34-a7538f1026bc&skoid=f2622f62-3126-45cd-85e0-0bc840c3afdc&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T05%3A38%3A31Z&ske=2026-10-02T05%3A38%3A31Z&sks=b&skv=2026-02-06&sig=%2BIAOZLTgBcvcSGIFW8%2BN/1oY6XUr5AcRdsU4yRKhoro%3D"
         run: |
           curl -fL "$TRANSFER_URL" -o installer.zip
           mkdir -p out
@@ -26,4 +26,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           installer=$(find out -maxdepth 1 -name '*.exe' -type f | head -n 1)
-          gh release create v6.2.2 "$installer" --title "KAIFA & SANA STREAM v6.2.2" --notes "Windows installer verified by the complete automated test suite."
+          gh release create v6.2.2 "$installer" --repo "$GITHUB_REPOSITORY" --title "KAIFA & SANA STREAM v6.2.2" --notes "Windows installer verified by the complete automated test suite."
