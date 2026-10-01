@@ -13,14 +13,14 @@ jobs:
     steps:
       - name: Download verified installer package
         env:
-          TRANSFER_URL: "https://sdmntprcentralindia.oaiusercontent.com/files/00000000-d0f4-8208-aae7-f6e688808e08/raw?se=2026-10-01T07%3A12%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=327255a1-95fd-47d7-ab34-a7538f1026bc&skoid=f2622f62-3126-45cd-85e0-0bc840c3afdc&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T06%3A57%3A23Z&ske=2026-10-02T06%3A57%3A23Z&sks=b&skv=2026-02-06&sig=UCV4sFP9QNo%2BaGeyT547nIBKiD8RMyU8FBgXZur2F04%3D"
+          TRANSFER_URL: "https://sdmntprcentralindia.oaiusercontent.com/files/00000000-450c-8208-bab3-a00720933818/raw?se=2026-10-01T07%3A14%3A49Z&sp=r&sv=2026-02-06&sr=b&scid=327255a1-95fd-47d7-ab34-a7538f1026bc&skoid=f2622f62-3126-45cd-85e0-0bc840c3afdc&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-01T06%3A12%3A08Z&ske=2026-10-02T06%3A12%3A08Z&sks=b&skv=2026-02-06&sig=X2ZnZ90guR2p/juXnicK1j0RnluWE5L8uanrLyoDYLs%3D"
         run: |
           curl -fL "$TRANSFER_URL" -o installer.zip
           mkdir -p out
           unzip -j installer.zip '*.exe' -d out
           installer=$(find out -maxdepth 1 -name '*.exe' -type f | head -n 1)
           test -n "$installer"
-          echo "f14d2d887b32b21190f5ffd24c08c75fed18e43d9de4cd90657bfc8631be1490  $installer" | sha256sum -c -
+          echo "af687ef8a1fc01b0bce1d8fdb711978271fc05babc9d3c4f4e6218cdd56ce1b1  $installer" | sha256sum -c -
       - name: Publish public release
         env:
           GH_TOKEN: ${{ github.token }}
